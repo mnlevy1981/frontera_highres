@@ -12,7 +12,7 @@
         mask   mask
   </variableNames>
   <filePath>
-     /ihesp/user/fred.castruccio/cesm.input/
+     /work/02503/edwardsj/CESM/inputdata/lnd/dlnd7/JRA55
   </filePath>
   <fileNames>
      domain.roff.JRA025m.190213.nc
@@ -24,7 +24,7 @@
         rofi  rofi
    </variableNames>
    <filePath>
-     /ihesp/obs_root/inputdata/ocn/jra55/v1.5_noleap
+     /work/02503/edwardsj/CESM/inputdata/lnd/dlnd7/JRA55
    </filePath>
    <fileNames>
            JRA.v1.5.runoff.1958.210505.nc

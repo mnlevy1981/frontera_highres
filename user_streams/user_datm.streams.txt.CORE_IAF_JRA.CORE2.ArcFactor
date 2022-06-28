@@ -12,7 +12,7 @@
         mask    mask
   </variableNames>
   <filePath>
-     /ihesp/obs_root/inputdata/atm/datm7/CORE2
+     /work/02503/edwardsj/CESM/inputdata/atm/datm7/CORE2
   </filePath>
   <fileNames>
      CORE2.t_10.ArcFactor.T62.1997-2004.nc
@@ -23,7 +23,7 @@
      TarcFactor tarcf
    </variableNames>
    <filePath>
-     /ihesp/obs_root/inputdata/atm/datm7/CORE2
+     /work/02503/edwardsj/CESM/inputdata/atm/datm7/CORE2
    </filePath>
    <fileNames>
      CORE2.t_10.ArcFactor.T62.1997-2004.nc

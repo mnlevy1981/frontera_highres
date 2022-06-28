@@ -12,7 +12,7 @@
         mask    mask
   </variableNames>
   <filePath>
-     /ihesp/obs_root/inputdata/atm/datm7/JRA55
+     /work/02503/edwardsj/CESM/inputdata/atm/datm7/JRA55
   </filePath>
   <fileNames>
     domain.atm.TL319.151007.nc
@@ -23,7 +23,7 @@
      v_10  v
    </variableNames>
    <filePath>
-     /ihesp/obs_root/inputdata/ocn/jra55/v1.5_noleap
+     /work/02503/edwardsj/CESM/inputdata/ocn/jra55/v1.5_noleap
    </filePath>
    <fileNames>
         JRA.v1.5.v_10.TL319.1958.210504.nc

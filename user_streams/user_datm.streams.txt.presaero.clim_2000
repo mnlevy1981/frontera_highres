@@ -12,7 +12,7 @@
         mask    mask
   </variableNames>
   <filePath>
-    /ihesp/obs_root/inputdata/atm/cam/chem/trop_mozart_aero/aero
+    /work/02503/edwardsj/CESM/inputdata/atm/cam/chem/trop_mozart_aero/aero
   </filePath>
   <fileNames>
      aerosoldep_monthly_2000_mean_1.9x2.5_c090421.nc
@@ -36,7 +36,7 @@
         DSTX04DD   dstdry4
    </variableNames>
    <filePath>
-     /ihesp/obs_root/inputdata/atm/cam/chem/trop_mozart_aero/aero
+     /work/02503/edwardsj/CESM/inputdata/atm/cam/chem/trop_mozart_aero/aero
    </filePath>
    <fileNames>
     aerosoldep_monthly_2000_mean_1.9x2.5_c090421.nc
