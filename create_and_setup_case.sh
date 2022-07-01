@@ -4,12 +4,13 @@
 set -e
 
 # USER CONFIGURABLE OPTIONS
-CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_16x16.002
+CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_15x15.001
 CASEROOT_PARENT=/work2/08815/mlevy/frontera/codes/CESM/cesm2.2.0/cases
 
 # RECOMMEND KEEPING THESE UNCHANGED
 CESMROOT=/work2/08815/mlevy/frontera/codes/CESM/cesm2.2.0
 COMPSET=G1850ECOIAF_JRA_HR
+#COMPSET="2000_DATM%JRA_SLND_CICE_POP2_DROF%JRA_SGLC_SWAV"
 RES=TL319_t13
 USER_STREAM_DIR=/work2/08815/mlevy/frontera/codes/frontera_highres_scripts/user_streams
 SOURCEMOD_DIR=/work2/08815/mlevy/frontera/codes/frontera_highres_scripts/SourceMods
@@ -47,11 +48,14 @@ echo "Making XML changes..."
 #./xmlchange STOP_N=3,STOP_OPTION=nmonths,REST_N=1
 #./xmlchange  --subgroup case.run JOB_WALLCLOCK_TIME=12:00:00
 #./xmlchange PROJECT=CESM0010
+#./xmlchange NTASKS_OCN=22626
+./xmlchange NTASKS_OCN=25654
 ./xmlchange OCN_CHL_TYPE=prognostic
 ./xmlchange OCN_BGC_CONFIG=latest+cocco
 ./xmlchange RUN_TYPE=hybrid,RUN_REFCASE=${ref_case},RUN_REFDATE=${ref_date}
 ./xmlchange OCN_TRACER_MODULES=ecosys
 ./xmlchange -a CICE_CONFIG_OPTS="-trage 0"
+./xmlchange DATM_PRESAERO=clim_2000,DATM_MODE=CORE_IAF_JRA,DROF_MODE=IAF_JRA
 
 # 2.5 Additional XML Changes that Keith noticed:
 #     * Change CPL_SEQ_OPTION
@@ -143,7 +147,6 @@ cat >> user_nl_datm << EOF
       "datm.streams.txt.CORE_IAF_JRA.NCEP.T_10 245 1958 2021",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.U_10 245 1958 2021",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.V_10 245 1958 2021",
-      "datm.streams.txt.CORE_IAF_JRA.CORE2.ArcFactor 245 1958 2021",
       "datm.streams.txt.presaero.clim_2000 1 1 1"
 EOF
 
@@ -165,3 +168,6 @@ run_dir=`./xmlquery RUNDIR --value`
 echo "copying restart files and rpointer files to ${run_dir}..."
 
 cp -v ${ref_dir}/${ref_date}-00000/* ${run_dir}
+
+# Next run "idev" to get interactive node, and then run ./case.build
+# (from what I can tell, srun will launch 56 concurrent instances of case.build)
