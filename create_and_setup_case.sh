@@ -50,7 +50,8 @@ echo "Making XML changes..."
 #./xmlchange  --subgroup case.run JOB_WALLCLOCK_TIME=12:00:00
 #./xmlchange PROJECT=CESM0010
 #./xmlchange NTASKS_OCN=22626
-./xmlchange NTASKS_OCN=25654
+#./xmlchange NTASKS_OCN=25654
+./xmlchange NTASKS_OCN=39661
 ./xmlchange OCN_CHL_TYPE=prognostic
 #./xmlchange OCN_BGC_CONFIG=latest+cocco # for 4p2z, will use user_nl_marbl
 ./xmlchange RUN_TYPE=hybrid,RUN_REFCASE=${ref_case},RUN_REFDATE=${ref_date}
@@ -100,6 +101,12 @@ lcvmix = .false.
 h_upper = 20.0
 ltidal_mixing = .true.
 
+! other changes from Fred (g.e21.GIAF.TL319_t13.5thCyc.ice.001)
+shf_strong_restore = 79.1
+shf_strong_restore_ms = 79.1
+sfwf_strong_restore = 0.56
+sfwf_strong_restore_ms = 0.56
+
 ! smaller timestep
 dt_count = 816
 time_mix_freq = 17
@@ -119,7 +126,9 @@ EOF
 
 cat >> user_nl_cice << EOF
 ndtd=2
-r_snw=1.00
+dt_mlt=0.5
+r_snw=1.60
+rsnw_mlt = 1000.
 f_blkmask = .true.
 
 histfreq = 'm','d','x','x','x'
@@ -128,9 +137,9 @@ f_hi = "mdxxx"
 f_dvidtd = "mdxxx"
 f_dvidtt = "mdxxx"
 f_hs = "mdxxx"
-f_apond_ai = "mxxxx"
-f_aice = "mxxxx"
+f_aice = "mdxxx"
 f_aicen = "mxxxx"
+f_apond_ai = "mxxxx"
 f_congel = "mxxxx"
 f_daidtd = "mxxxx"
 f_daidtt = "mxxxx"
@@ -173,6 +182,7 @@ cp ${USER_STREAM_DIR}/user_* .
 echo "copying file(s) to SourceMods..."
 
 cp ${SOURCEMOD_DIR}/marbl_interior_tendency_mod.F90 SourceMods/src.pop/
+cp ${SOURCEMOD_DIR}/forcing_shf.F90 SourceMods/src.pop/
 
 # 6. Set up rpointers
 run_dir=`./xmlquery RUNDIR --value`
