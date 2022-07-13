@@ -47,15 +47,12 @@ cd ${CASEROOT_PARENT}/${CASENAME}
 #       will need a separate script to generate time-series (where will time series go?)
 echo "Making XML changes..."
 
-#./xmlchange STOP_N=3,STOP_OPTION=nmonths,REST_N=1
-#./xmlchange  --subgroup case.run JOB_WALLCLOCK_TIME=12:00:00
-#./xmlchange PROJECT=CESM0010
 ./xmlchange OCN_CHL_TYPE=prognostic
-#./xmlchange OCN_BGC_CONFIG=latest+cocco # for 4p2z, will use user_nl_marbl
 ./xmlchange RUN_TYPE=hybrid,RUN_REFCASE=${ref_case},RUN_REFDATE=${ref_date}
 ./xmlchange OCN_TRACER_MODULES=ecosys
 ./xmlchange -a CICE_CONFIG_OPTS="-trage 0"
 ./xmlchange DATM_MODE=CORE_IAF_JRA,DROF_MODE=IAF_JRA
+./xmlchange REST_N=1,REST_OPTION=nmonths
 ###
 # 16 x 16 blocks (1.1 SYPD, 510k cpu-hours / year)
 ###
@@ -65,15 +62,15 @@ echo "Making XML changes..."
 ###
 # 15 x 15 blocks (1.4 SYPD, 460k cpu-hours / year)
 ###
-#./xmlchange NTASKS_OCN=25654
-#./xmlchange STOP_N=2,STOP_OPTION=nyears
-#./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=40:00:00
+./xmlchange NTASKS_OCN=25654
+./xmlchange STOP_N=2,STOP_OPTION=nyears
+./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=40:00:00
 ###
 # 12 x 12 blocks (1.7 SYPD, 570k cpu-hours / year)
 ###
-./xmlchange NTASKS_OCN=39661
-./xmlchange STOP_N=3,STOP_OPTION=nyears
-./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=48:00:00
+#./xmlchange NTASKS_OCN=39661
+#./xmlchange STOP_N=3,STOP_OPTION=nyears
+#./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=48:00:00
 
 # 2.5 Additional XML Changes that Keith noticed:
 #     * Change CPL_SEQ_OPTION
@@ -148,11 +145,20 @@ f_blkmask = .true.
 
 histfreq = 'm','d','x','x','x'
 histfreq_n = 1,1,0,0,0
-f_hi = "mdxxx"
+f_aice = "mdxxx"
 f_dvidtd = "mdxxx"
 f_dvidtt = "mdxxx"
+f_fcondtop_ai = "mdxxx"
+f_flat = "mdxxx"
+f_flwdn = "mdxxx"
+f_fsens = "mdxxx"
+f_fswdn = "mdxxx"
+f_hi = "mdxxx"
 f_hs = "mdxxx"
-f_aice = "mdxxx"
+f_snoice = "mdxxx"
+f_uvel = "mdxxx"
+f_vvel = "mdxxx"
+
 f_aicen = "mxxxx"
 f_apond_ai = "mxxxx"
 f_congel = "mxxxx"
@@ -160,7 +166,6 @@ f_daidtd = "mxxxx"
 f_daidtt = "mxxxx"
 f_frazil = "mxxxx"
 f_fswabs = "mxxxx"
-f_fswdn = "mxxxx"
 f_fswthru = "mxxxx"
 f_meltb = "mxxxx"
 f_meltl = "mxxxx"
