@@ -202,8 +202,10 @@ cp ${USER_STREAM_DIR}/user_* .
 #    * Modify dz*DOP_loss_P_bal threshold to reduce warnings in cesm.log
 echo "copying file(s) to SourceMods..."
 
-cp ${SOURCEMOD_DIR}/marbl_interior_tendency_mod.F90 SourceMods/src.pop/
-cp ${SOURCEMOD_DIR}/forcing_shf.F90 SourceMods/src.pop/
+for file in marbl_interior_tendency_mod.F90 forcing_shf.F90 baroclinic.F90
+do
+  cp ${SOURCEMOD_DIR}/${file} SourceMods/src.pop/
+done
 
 # 6. Set up rpointers
 run_dir=`./xmlquery RUNDIR --value`
