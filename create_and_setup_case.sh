@@ -185,7 +185,8 @@ cat >> user_nl_datm << EOF
       "datm.streams.txt.CORE_IAF_JRA.NCEP.SLP_ 1958 1958 2021",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.T_10 1958 1958 2021",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.U_10 1958 1958 2021",
-      "datm.streams.txt.CORE_IAF_JRA.NCEP.V_10 1958 1958 2021"
+      "datm.streams.txt.CORE_IAF_JRA.NCEP.V_10 1958 1958 2021",
+      "datm.streams.txt.presaero.clim_1850 1958 1958 2025"
 EOF
 
 cat >> user_nl_drof << EOF
