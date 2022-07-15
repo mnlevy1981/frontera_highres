@@ -48,11 +48,13 @@ cd ${CASEROOT_PARENT}/${CASENAME}
 echo "Making XML changes..."
 
 ./xmlchange OCN_CHL_TYPE=prognostic
+./xmlchange OCN_CO2_TYPE=diagnostic
 ./xmlchange RUN_TYPE=hybrid,RUN_REFCASE=${ref_case},RUN_REFDATE=${ref_date}
 ./xmlchange RUN_STARTDATE=1958-01-01
 ./xmlchange OCN_TRACER_MODULES=ecosys
 ./xmlchange -a CICE_CONFIG_OPTS="-trage 0"
 ./xmlchange DATM_MODE=CORE_IAF_JRA,DROF_MODE=IAF_JRA
+./xmlchange DATM_CO2_TSERIES=omip
 ./xmlchange REST_N=1,REST_OPTION=nmonths
 ###
 # 16 x 16 blocks (1.1 SYPD, 510k cpu-hours / year)
@@ -102,10 +104,6 @@ tavg_stream_filestrings = 'nmonth1' 'nday1' 'nyear1' 'nday5'
 tavg_contents_override_file = '${tavg_contents_override_file}'
 n_tavg_streams = ${n_tavg_streams}
 
-! 2x pulse in alternative atmospheric co2 concentration
-! Enabled for years 0028 - 0032 [inclusive]
-! atm_alt_co2_const = 568.634 ! originally 284.317
-
 ! Needed to get all MARBL diags defined correctly
 lecosys_tavg_alt_co2 = .true.
 
@@ -128,9 +126,9 @@ time_mix_freq = 17
 ndep_data_type = 'shr_stream'
 ndep_shr_stream_file = '/scratch1/08815/mlevy/tmp_inputdata/ocn_Ndep_transient_forcing_x0.1_220709.nc'
 ndep_shr_stream_scale_factor = 7.1429e+06
-ndep_shr_stream_year_align = 1957
-ndep_shr_stream_year_first = 1957
-ndep_shr_stream_year_last = 2025
+ndep_shr_stream_year_align = 1958
+ndep_shr_stream_year_first = 1958
+ndep_shr_stream_year_last = 2021
 
 ! First run needs initial conditions for ecosys
 init_ecosys_option='ccsm_startup'
@@ -186,7 +184,8 @@ cat >> user_nl_datm << EOF
       "datm.streams.txt.CORE_IAF_JRA.NCEP.T_10 1958 1958 2021",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.U_10 1958 1958 2021",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.V_10 1958 1958 2021",
-      "datm.streams.txt.presaero.clim_1850 1958 1958 2021"
+      "datm.streams.txt.presaero.clim_1850 1958 1958 2021",
+      "datm.streams.txt.co2tseries.omip 1958 1958 2021"
 EOF
 
 cat >> user_nl_drof << EOF
