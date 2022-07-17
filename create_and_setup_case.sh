@@ -49,6 +49,7 @@ echo "Making XML changes..."
 
 ./xmlchange OCN_CHL_TYPE=prognostic
 ./xmlchange OCN_CO2_TYPE=diagnostic
+./xmlchange CCSM_BGC=CO2A
 ./xmlchange RUN_TYPE=hybrid,RUN_REFCASE=${ref_case},RUN_REFDATE=${ref_date}
 ./xmlchange RUN_STARTDATE=1958-01-01
 ./xmlchange OCN_TRACER_MODULES=ecosys

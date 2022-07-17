@@ -15,7 +15,7 @@
      /work/02503/edwardsj/CESM/inputdata//atm/cam/chem/trop_mozart_aero/aero
   </filePath>
   <fileNames>
-     aerosoldep_WACCM.ensmean_monthly_hist_1849-2015_0.9x1.25_CMIP6_c180926.nc
+     aerosoldep_WACCM.ensmean_monthly_hist_1849-2014_0.9x1.25_CMIP6_c201111.nc
   </fileNames>
 </domainInfo>
 <fieldInfo>
@@ -39,8 +39,8 @@
      /work/02503/edwardsj/CESM/inputdata//atm/cam/chem/trop_mozart_aero/aero
    </filePath>
    <fileNames>
-    aerosoldep_WACCM.ensmean_monthly_hist_1849-2015_0.9x1.25_CMIP6_c180926.nc
-    aerodep_clm_SSP370_b.e21.BWSSP370cmip6.f09_g17.CMIP6-SSP3-7.0-WACCM.001_2015-2025_monthly_0.9x1.25_c201111.nc
+     aerosoldep_WACCM.ensmean_monthly_hist_1849-2014_0.9x1.25_CMIP6_c201111.nc
+     aerodep_clm_SSP370_b.e21.BWSSP370cmip6.f09_g17.CMIP6-SSP3-7.0-WACCM.001_2015-2025_monthly_0.9x1.25_c201111.nc
    </fileNames>
    <offset>
       0
