@@ -141,10 +141,12 @@
 1  microzoo_loss_zint_100m
 1  microzoo_loss_poc_zint_100m
 1  microzoo_loss_doc_zint_100m
+1  x_graze_microzoo_zint
 1  mesozooC
 1  mesozoo_loss_zint_100m
 1  mesozoo_loss_poc_zint_100m
 1  mesozoo_loss_doc_zint_100m
+1  x_graze_mesozoo_zint
 
 #  particulate terms
 1  POC_FLUX_100m
