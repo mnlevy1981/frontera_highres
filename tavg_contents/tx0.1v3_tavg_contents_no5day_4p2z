@@ -36,6 +36,7 @@
 2  diazC_zint_100m
 2  microzooC_zint_100m
 2  mesozooC_zint_100m
+1  mesozooC_zint_100m_2
 
 #  gas flux related
 2  ECOSYS_IFRAC_2
@@ -216,6 +217,7 @@
 1  SALT
 1  TEMP
 1  TEMP_BOTTOM
+1  TEMP_mean_100m
 1  TEND_SALT
 1  TEND_TEMP
 
@@ -269,6 +271,7 @@
 
 #  sediments
 1  calcToSed
+1  pocToFloor
 1  pocToSed
 1  ponToSed
 1  SedDenitrif

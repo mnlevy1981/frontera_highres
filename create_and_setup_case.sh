@@ -57,6 +57,7 @@ echo "Making XML changes..."
 ./xmlchange DATM_MODE=CORE_IAF_JRA,DROF_MODE=IAF_JRA
 ./xmlchange DATM_CO2_TSERIES=omip
 ./xmlchange REST_N=1,REST_OPTION=nmonths
+./xmlchange DOUT_S_SAVE_INTERIM_RESTART_FILES=TRUE
 ###
 # 16 x 16 blocks (1.1 SYPD, 510k cpu-hours / year)
 ###
@@ -146,31 +147,31 @@ f_blkmask = .true.
 histfreq = 'm','d','x','x','x'
 histfreq_n = 1,1,0,0,0
 f_aice = "mdxxx"
+f_congel = "mdxxx"
+f_daidtd = "mdxxx"
+f_daidtt = "mdxxx"
 f_dvidtd = "mdxxx"
 f_dvidtt = "mdxxx"
 f_fcondtop_ai = "mdxxx"
 f_flat = "mdxxx"
 f_flwdn = "mdxxx"
+f_frazil = "mdxxx"
 f_fsens = "mdxxx"
+f_fswabs = "mdxxx"
 f_fswdn = "mdxxx"
+f_fswthru = "mdxxx"
 f_hi = "mdxxx"
 f_hs = "mdxxx"
+f_meltb = "mdxxx"
+f_meltl = "mdxxx"
+f_melts = "mdxxx"
+f_meltt = "mdxxx"
 f_snoice = "mdxxx"
 f_uvel = "mdxxx"
 f_vvel = "mdxxx"
 
 f_aicen = "mxxxx"
 f_apond_ai = "mxxxx"
-f_congel = "mxxxx"
-f_daidtd = "mxxxx"
-f_daidtt = "mxxxx"
-f_frazil = "mxxxx"
-f_fswabs = "mxxxx"
-f_fswthru = "mxxxx"
-f_meltb = "mxxxx"
-f_meltl = "mxxxx"
-f_melts = "mxxxx"
-f_meltt = "mxxxx"
 f_vicen = "mxxxx"
 f_vsnon = "mxxxx"
 EOF
@@ -203,7 +204,7 @@ cp ${USER_STREAM_DIR}/user_* .
 #    * Modify dz*DOP_loss_P_bal threshold to reduce warnings in cesm.log
 echo "copying file(s) to SourceMods..."
 
-for file in marbl_interior_tendency_mod.F90 forcing_shf.F90 baroclinic.F90
+for file in marbl_interior_tendency_mod.F90 forcing_shf.F90 tavg.F90 passive_tracers.F90
 do
   cp ${SOURCEMOD_DIR}/${file} SourceMods/src.pop/
 done
