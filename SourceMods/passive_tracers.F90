@@ -124,9 +124,12 @@
       tavg_var_tend_zint_100m,  & ! vertically integrated tracer tendency, 0-100m
       tavg_var_rf_tend,         & ! tavg id for Robert Filter tracer adjustment
       tavg_var_bot,             & ! tracer value at sea floor
+      tavg_var_bot_2,           & ! tracer value at sea floor
       tavg_var_mean_100m,       & ! 0-100m mean of tracer
+      tavg_var_mean_150m,       & ! 0-100m mean of tracer
       tavg_var_zint_100m,       & ! 0-100m integral of tracer
-      tavg_var_zint_100m_2        ! 0-100m integral of tracer
+      tavg_var_zint_100m_2,     & ! 0-100m integral of tracer
+      tavg_var_zint_150m          ! 0-150m integral of tracer
 
    integer (int_kind), dimension (3:nt) ::  &
       tavg_var,                 & ! tracer
@@ -540,12 +543,35 @@
                              coordinates='TLONG TLAT time')
 
       sname = trim(tracer_d(n)%short_name) /&
+                                            &/ '_BOTTOM_2'
+      lname = trim(tracer_d(n)%long_name) /&
+                                           &/ ' Value at Sea Floor'
+      units = tracer_d(n)%units
+      call define_tavg_field(tavg_var_bot_2(n),                     &
+                             sname, 2, long_name=lname,             &
+                             units=units, grid_loc='2110',          &
+                             scale_factor=tracer_d(n)%scale_factor, &
+                             coordinates='TLONG TLAT time')
+
+      sname = trim(tracer_d(n)%short_name) /&
                                             &/ '_mean_100m'
       lname = trim(tracer_d(n)%long_name) /&
                                            &/ ' 0-100m Vertical Mean'
       units = trim(tracer_d(n)%units) /&
                                        &/ ' cm'
       call define_tavg_field(tavg_var_mean_100m(n),                 &
+                             sname, 2, long_name=lname,             &
+                             units=units, grid_loc='2110',          &
+                             scale_factor=tracer_d(n)%scale_factor, &
+                             coordinates='TLONG TLAT time')
+
+      sname = trim(tracer_d(n)%short_name) /&
+                                            &/ '_mean_150m'
+      lname = trim(tracer_d(n)%long_name) /&
+                                           &/ ' 0-150m Vertical Mean'
+      units = trim(tracer_d(n)%units) /&
+                                       &/ ' cm'
+      call define_tavg_field(tavg_var_mean_150m(n),                 &
                              sname, 2, long_name=lname,             &
                              units=units, grid_loc='2110',          &
                              scale_factor=tracer_d(n)%scale_factor, &
@@ -570,6 +596,18 @@
       units = trim(tracer_d(n)%units) /&
                                        &/ ' cm'
       call define_tavg_field(tavg_var_zint_100m_2(n),               &
+                             sname, 2, long_name=lname,             &
+                             units=units, grid_loc='2110',          &
+                             scale_factor=tracer_d(n)%scale_factor, &
+                             coordinates='TLONG TLAT time')
+
+      sname = trim(tracer_d(n)%short_name) /&
+                                            &/ '_zint_150m'
+      lname = trim(tracer_d(n)%long_name) /&
+                                           &/ ' 0-150m Vertical Integral'
+      units = trim(tracer_d(n)%units) /&
+                                       &/ ' cm'
+      call define_tavg_field(tavg_var_zint_150m(n),                 &
                              sname, 2, long_name=lname,             &
                              units=units, grid_loc='2110',          &
                              scale_factor=tracer_d(n)%scale_factor, &
@@ -1392,12 +1430,13 @@
          enddo
       endif
       do n = 1, nt
-        if (accumulate_tavg_now(tavg_var_bot(n))) then
+        if (accumulate_tavg_now(tavg_var_bot(n)) .or. accumulate_tavg_now(tavg_var_bot_2(n))) then
           WORK = c0
           where (k == KMT(:,:,bid))
             WORK = TRACER(:,:,k,n,curtime,bid)
           end where
           call accumulate_tavg_field(WORK,tavg_var_bot(n),bid,k)
+          call accumulate_tavg_field(WORK,tavg_var_bot_2(n),bid,k)
         end if
       end do
 
@@ -1439,6 +1478,40 @@
             endif
          enddo
       endif
+      if (ztop < 150.0e2_r8) then
+         !add tavg_var_mean_150m and compute 150m everywhere
+         ! loop from 1 -> nt
+         ! if any accumulating mean_150m, denom = min(HT, 150)
+         ! (+ PSURF(:,:,curtime,bid)/grav if sfc_layer_varthick)
+          DENOM = 150.0e2_r8
+          where((HT(:,:,bid) < 150.0e2_r8) .and. (KMT(:,:,bid) > 0))
+            DENOM = HT(:,:,bid)
+          end where
+          if (sfc_layer_type == sfc_layer_varthick) then
+            DENOM = DENOM(:,:) + PSURF(:,:,curtime,bid)/grav
+          end if
+
+          do n = 1, nt
+            if (accumulate_tavg_now(tavg_var_mean_150m(n)) .or. &
+                accumulate_tavg_now(tavg_var_zint_150m(n))) then
+                   if (sfc_layer_type == sfc_layer_varthick .and. k == 1) then
+                      WORK = merge((dz(k)+PSURF(:,:,curtime,bid)/grav) &
+                                   * TRACER(:,:,k,n,curtime,bid), c0, k<=KMT(:,:,bid))
+                   else
+                      if (partial_bottom_cells) then
+                         WORK = merge(min(150.0e2_r8 - ztop, DZT(:,:,k,bid)) &
+                                      * TRACER(:,:,k,n,curtime,bid), c0, k<=KMT(:,:,bid))
+                      else
+                         WORK = merge(min(150.0e2_r8 - ztop, dz(k)) &
+                                      * TRACER(:,:,k,n,curtime,bid), c0, k<=KMT(:,:,bid))
+                      endif
+                   endif
+                   call accumulate_tavg_field(WORK,tavg_var_zint_150m(n),bid,k)
+                   call accumulate_tavg_field(WORK/DENOM,tavg_var_mean_150m(n),bid,k)
+                   ! accumulate (WORK / denom)
+             endif
+          enddo
+       endif
    endif
 
 !-----------------------------------------------------------------------

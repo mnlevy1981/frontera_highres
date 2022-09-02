@@ -36,6 +36,7 @@
 2  diazC_zint_100m
 2  microzooC_zint_100m
 2  mesozooC_zint_100m
+2  mesozooC_zint_150m
 1  mesozooC_zint_100m_2
 
 #  gas flux related
@@ -145,6 +146,7 @@
 1  x_graze_microzoo_zint
 1  mesozooC
 1  mesozoo_loss_zint_100m
+2  mesozoo_loss_zint_150m
 1  mesozoo_loss_poc_zint_100m
 1  mesozoo_loss_doc_zint_100m
 1  x_graze_mesozoo_zint
@@ -217,7 +219,9 @@
 1  SALT
 1  TEMP
 1  TEMP_BOTTOM
+2  TEMP_BOTTOM_2
 1  TEMP_mean_100m
+2  TEMP_mean_150m
 1  TEND_SALT
 1  TEND_TEMP
 
@@ -272,6 +276,7 @@
 #  sediments
 1  calcToSed
 1  pocToFloor
+2  pocToFloor_2
 1  pocToSed
 1  ponToSed
 1  SedDenitrif

@@ -204,7 +204,12 @@ cp ${USER_STREAM_DIR}/user_* .
 #    * Modify dz*DOP_loss_P_bal threshold to reduce warnings in cesm.log
 echo "copying file(s) to SourceMods..."
 
-for file in marbl_interior_tendency_mod.F90 forcing_shf.F90 tavg.F90 passive_tracers.F90
+for file in marbl_interior_tendency_mod.F90 \
+            marbl_diagnostics_mod.F90 \
+            marbl_interface_private_types.F90 \
+            forcing_shf.F90 \
+            tavg.F90 \
+            passive_tracers.F90
 do
   cp ${SOURCEMOD_DIR}/${file} SourceMods/src.pop/
 done
