@@ -207,9 +207,11 @@ echo "copying file(s) to SourceMods..."
 for file in marbl_interior_tendency_mod.F90 \
             marbl_diagnostics_mod.F90 \
             marbl_interface_private_types.F90 \
+            baroclinic.F90 \
+            forcing.F90 \
             forcing_shf.F90 \
-            tavg.F90 \
-            passive_tracers.F90
+            passive_tracers.F90 \
+            tavg.F90
 do
   cp ${SOURCEMOD_DIR}/${file} SourceMods/src.pop/
 done

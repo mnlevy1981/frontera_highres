@@ -7,9 +7,14 @@
 #  hi-freq physics  #
 #  ###############  #
 2  SSH_2
+2  TAUX_2
+2  TAUY_2
 2  SST
 2  HMXL_2
 2  SHF_QSW_2
+2  U1_1
+2  V1_1
+2  N2_zavg_200m
 
 #  ###################  #
 #  hi-freq ecosys vars  #
