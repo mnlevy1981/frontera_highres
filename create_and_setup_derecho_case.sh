@@ -5,7 +5,7 @@
 set -e
 
 # USER CONFIGURABLE OPTIONS
-CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_15x15.4p2z.ndep_shr_stream.001
+CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_15x15.4p2z.ndep_shr_stream.003
 CASEROOT_PARENT=/glade/work/mlevy/codes/CESM/cesm2.2.2/cases
 PROJECT=USIO0030
 
@@ -25,7 +25,7 @@ ref_date=2004-01-01
 #n_tavg_streams=3
 # 1996 - 2018 [283-305; 39-61]:
 # Alternate for Yassir: use 5day output for last 10 years => turn on 2009 (52)
-tavg_contents_override_file=/glade/work/mlevy/codes/frontera_highres/tavg_contents/tx0.1v3_tavg_contents
+tavg_contents_override_file=/glade/work/mlevy/codes/frontera_highres/tavg_contents/tx0.1v3_tavg_contents_4p2z
 n_tavg_streams=4
 
 
@@ -58,18 +58,21 @@ echo "Making XML changes..."
 ./xmlchange DATM_CO2_TSERIES=omip
 ./xmlchange REST_N=1,REST_OPTION=nmonths
 ./xmlchange DOUT_S_SAVE_INTERIM_RESTART_FILES=TRUE
+# Derecho-specific changes for performance
+./xmlchange PIO_VERSION=1
+./xmlchange NTASKS_CPL=896,NTASKS_ICE=896,ROOTPE_ICE=0,ROOTPE_OCN=896
 ###
-# 16 x 16 blocks (1.1 SYPD, 510k cpu-hours / year)
+# 16 x 16 blocks (1.2 SYPD, 490k cpu-hours / year)
 ###
 #./xmlchange NTASKS_OCN=22626
-#./xmlchange STOP_N=2,STOP_OPTION=nyears
-#./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=48:00:00
+#./xmlchange STOP_N=6,STOP_OPTION=nmonths
+#./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=12:00:00
 ###
-# 15 x 15 blocks (1.4 SYPD, 460k cpu-hours / year)
+# 15 x 15 blocks (1.3 SYPD, 490k cpu-hours / year)
 ###
 ./xmlchange NTASKS_OCN=25654
-./xmlchange STOP_N=1,STOP_OPTION=nmonths
-./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=04:00:00
+./xmlchange STOP_N=6,STOP_OPTION=nmonths
+./xmlchange --subgroup case.run JOB_WALLCLOCK_TIME=12:00:00
 ###
 # 12 x 12 blocks (1.7 SYPD, 570k cpu-hours / year)
 ###
@@ -216,7 +219,8 @@ done
 run_dir=`./xmlquery RUNDIR --value`
 echo "copying restart files and rpointer files to ${run_dir}..."
 
-cp -v ${ref_dir}/rest/${ref_date}-00000/* ${run_dir}
+cp -v ${ref_dir}/rest/${ref_date}-00000/rpointer* ${run_dir}
+ln -s ${ref_dir}/rest/${ref_date}-00000/g.e22.TL319_t13.G1850ECOIAF_JRA_HR.4p2z.001.*.nc ${run_dir}
 
 echo ""
 echo "SUCCESS! Created ${CASEROOT_PARENT}/${CASENAME}"
