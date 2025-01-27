@@ -1,11 +1,17 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# NOTE: To get email notifications from run, set up ~/.cime/config
-# exit on error
-set -e
+# NOTES:
+# 1. To get email notifications from run, set up ~/.cime/config
+# 2. This runs out of a CESM 2.2.2 sandbox with two modifications
+#    i. Check out commit 75fa043 for MARBL (components/pop/externals/MARBL);
+#       This fixes the per-zooplankton diagnostics for grazing
+#    ii. CESM 2.2.2 by default runs st_archiver in main queue; we use develop
+#        It looks like default mem request for develop is 10gb, so this reduces
+#        the memory request as well.
+#        (cime/config/cesm/machines/config_batch.xml diff)
 
 # USER CONFIGURABLE OPTIONS
-CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_15x15.4p2z.ndep_shr_stream.003
+CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_15x15.4p2z.ndep_shr_stream.001
 CASEROOT_PARENT=/glade/work/mlevy/codes/CESM/cesm2.2.2/cases
 PROJECT=USIO0030
 
