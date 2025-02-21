@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<file id="stream" version="1.0">
+<dataSource>
+   GENERIC
+</dataSource>
+<domainInfo>
+  <variableNames>
+     time    time
+        xc      lon
+        yc      lat
+        area    area
+        mask    mask
+  </variableNames>
+  <filePath>
+     /glade/p/cesmdata/cseg/inputdata/atm/datm7/JRA55
+  </filePath>
+  <fileNames>
+     domain.atm.TL319.151007.nc
+  </fileNames>
+</domainInfo>
+<fieldInfo>
+   <variableNames>
+     cldamt  cloudfrac
+   </variableNames>
+   <filePath>
+     /glade/work/gclow/isccp_data_TL319/yearly_files
+   </filePath>
+   <fileNames>
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1958.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1959.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1960.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1961.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1962.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1963.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1964.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1965.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1966.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1967.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1968.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1969.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1970.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1971.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1972.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1973.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1974.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1975.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1976.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1977.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1978.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1979.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1980.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1981.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1982.nc
+      ISCCP-Basic.HGG.GLOBAL.TL319.climatology.1983.nc
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1984.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1985.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1986.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1987.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1988.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1989.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1990.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1991.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1992.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1993.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1994.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1995.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1996.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1997.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1998.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.1999.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2000.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2001.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2002.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2003.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2004.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2005.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2006.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2007.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2008.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2009.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2010.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2011.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2012.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2013.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2014.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2015.GPC.10KM.CS00.EA1.00.nc 
+      ISCCP-Basic.HGG.v01r00.GLOBAL.TL319.2016.GPC.10KM.CS00.EA1.00.nc
+      ISCCP-Basic-icdr.HGG.v01r00.GLOBAL.TL319.2017.GPC.10KM.CS00.EA1.00.nc
+      ISCCP-Basic-icdr.HGG.v01r00.GLOBAL.TL319.2018.GPC.10KM.CS00.EA1.00.nc
+   </fileNames>
+   <offset>
+      0
+   </offset>
+</fieldInfo>
+</file>
