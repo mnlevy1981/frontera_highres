@@ -30,7 +30,7 @@
    use forcing_ap
    use forcing_coupled, only: set_combined_forcing, tavg_coupled_forcing,  &
        liceform, qsw_12hr_factor, qsw_distrb_iopt, qsw_distrb_iopt_cosz, &
-       tday00_interval_beg, interval_cum_dayfrac, QSW_COSZ_WGHT_NORM, &
+       tday00, interval_cum_dayfrac, QSW_COSZ_WGHT_NORM, & ! changed from tday00_interval_beg
        QSW_COSZ_WGHT, compute_cosz
    use forcing_tools
    use passive_tracers, only: set_sflux_passive_tracers
@@ -384,37 +384,50 @@
 
 !-----------------------------------------------------------------------
 !
+! calculate COSZEN
+!
+!-----------------------------------------------------------------------
+
+   index_qsw = mod(nsteps_this_interval,nsteps_per_interval) + 1
+
+   cosz_day = tday00 + interval_cum_dayfrac(index_qsw-1) & ! change from tday00_interval_beg
+   - interval_cum_dayfrac(nsteps_per_interval)
+
+   !$OMP PARALLEL DO PRIVATE(iblock,nbin)
+      do iblock = 1, nblocks_clinic
+         call compute_cosz(cosz_day, iblock, COSZEN(:,:,iblock))
+      enddo
+   !$OMP END PARALLEL DO
+
+!-----------------------------------------------------------------------
+!
 ! apply qsw 12hr if chosen
 !
 !-----------------------------------------------------------------------
 
-      index_qsw = mod(nsteps_this_interval,nsteps_per_interval) + 1
+   if ( qsw_distrb_iopt == qsw_distrb_iopt_cosz ) then
 
-      if ( qsw_distrb_iopt == qsw_distrb_iopt_cosz ) then
-         cosz_day = tday00_interval_beg + interval_cum_dayfrac(index_qsw-1) &
-            - interval_cum_dayfrac(nsteps_per_interval)
+      !$OMP PARALLEL DO PRIVATE(iblock,nbin)
+      do iblock = 1, nblocks_clinic
 
-         !$OMP PARALLEL DO PRIVATE(iblock,nbin)
-         do iblock = 1, nblocks_clinic
+         QSW_COSZ_WGHT(:,:,iblock) = COSZEN(:,:,iblock)
 
-            call compute_cosz(cosz_day, iblock, QSW_COSZ_WGHT(:,:,iblock))
+         where (QSW_COSZ_WGHT_NORM(:,:,iblock) > c0)
+            QSW_COSZ_WGHT(:,:,iblock) = QSW_COSZ_WGHT(:,:,iblock) &
+               * QSW_COSZ_WGHT_NORM(:,:,iblock)
+         elsewhere
+            QSW_COSZ_WGHT(:,:,iblock) = c1
+         endwhere
 
-            where (QSW_COSZ_WGHT_NORM(:,:,iblock) > c0)
-               QSW_COSZ_WGHT(:,:,iblock) = QSW_COSZ_WGHT(:,:,iblock) &
-                  * QSW_COSZ_WGHT_NORM(:,:,iblock)
-            elsewhere
-               QSW_COSZ_WGHT(:,:,iblock) = c1
-            endwhere
+         SHF_QSW(:,:,iblock) = QSW_COSZ_WGHT(:,:,iblock) &
+            * SHF_COMP(:,:,iblock,shf_comp_qsw)
 
-            SHF_QSW(:,:,iblock) = QSW_COSZ_WGHT(:,:,iblock) &
-               * SHF_COMP(:,:,iblock,shf_comp_qsw)
-
-            do nbin = 1, mcog_nbins
-               QSW_BIN(:,:,nbin,iblock) = QSW_COSZ_WGHT(:,:,iblock) * QSW_RAW_BIN(:,:,nbin,iblock)
-            enddo
-
+         do nbin = 1, mcog_nbins
+            QSW_BIN(:,:,nbin,iblock) = QSW_COSZ_WGHT(:,:,iblock) * QSW_RAW_BIN(:,:,nbin,iblock)
          enddo
-         !$OMP END PARALLEL DO
+
+      enddo
+      !$OMP END PARALLEL DO
 
       else
 

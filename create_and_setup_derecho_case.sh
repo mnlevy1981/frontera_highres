@@ -3,8 +3,8 @@
 # NOTES:
 # 1. To get email notifications from run, set up ~/.cime/config
 # 2. This runs out of a CESM 2.2.2 sandbox with two modifications
-#    i. Check out commit 75fa043 for MARBL (components/pop/externals/MARBL);
-#       This fixes the per-zooplankton diagnostics for grazing
+#    i. Check out add_nonlinear_loss_to_diags_cesm2.2.2 tag for MARBL (components/pop/externals/MARBL);
+#       This fixes the per-zooplankton diagnostics for grazing, and adds a few more diagnostics
 #    ii. CESM 2.2.2 by default runs st_archiver in main queue; we use develop
 #        It looks like default mem request for develop is 10gb, so this reduces
 #        the memory request as well.
@@ -192,7 +192,19 @@ cat >> user_nl_datm << EOF
       "datm.streams.txt.CORE_IAF_JRA.NCEP.U_10 1958 1958 2023",
       "datm.streams.txt.CORE_IAF_JRA.NCEP.V_10 1958 1958 2023",
       "datm.streams.txt.presaero.clim_1850 1958 1958 2023",
-      "datm.streams.txt.co2tseries.omip 1958 1958 2023"
+      "datm.streams.txt.co2tseries.omip 1958 1958 2023",
+      "datm.streams.txt.CORE_IAF_JRA.ISCCP.CLOUDS 1958 1958 2018"
+
+dtlimit(11) = 1.0e30
+
+mapalgo(10) = "nn"
+mapalgo(11) = "bilinear"
+
+fillalgo(10) = "nn"
+fillalgo(11) = "copy"
+
+taxmode(10) = "extend"
+taxmode(11) = "cycle"
 EOF
 
 cat >> user_nl_drof << EOF
@@ -210,8 +222,6 @@ cp ${USER_STREAM_DIR}/user_* .
 echo "copying file(s) to SourceMods..."
 
 for file in marbl_interior_tendency_mod.F90 \
-            marbl_diagnostics_mod.F90 \
-            marbl_interface_private_types.F90 \
             baroclinic.F90 \
             forcing.F90 \
             forcing_shf.F90 \

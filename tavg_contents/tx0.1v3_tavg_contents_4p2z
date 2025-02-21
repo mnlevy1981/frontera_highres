@@ -51,6 +51,16 @@
 2  FG_CO2_2
 2  STF_O2_2
 
+# ChlOSP (Chlorophyll Satellite Emulator)
+2  totChl
+2  totChl_clearsky
+2  totChl_clearsky_wgt
+2  totChl_satellite
+2  totChl_satellite_wgt
+2  cloudfrac_isccp
+2  cloudfrac_isccp_wgt
+
+
 #  #############  #
 #  5-day physics  #
 #  #############  #
@@ -162,6 +172,7 @@
 4  mesozooC
 1  mesozoo_loss_zint_100m
 2  mesozoo_loss_zint_150m
+2  mesozoo_loss_nonlinear_zint_150m
 4  mesozoo_loss_poc_zint_100m
 4  mesozoo_loss_doc_zint_100m
 4  x_graze_microzoo_zint
