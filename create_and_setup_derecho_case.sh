@@ -12,12 +12,12 @@
 
 # USER CONFIGURABLE OPTIONS
 CASENAME=g.e22.TL319_t13.G1850ECOIAF_JRA_HR.test_15x15.4p2z.ndep_shr_stream.001
-CASEROOT_PARENT=/glade/work/mlevy/codes/CESM/cesm2.2.2/cases
+CASEROOT_PARENT=/glade/work/mlevy/codes/CESM/cesm2.2.2_chlosp_HRpop/cases
 PROJECT=USIO0030
 
 # RECOMMEND KEEPING THESE UNCHANGED
 SCRIPT_DIR=`cd -P $(dirname $0) ; echo $PWD`
-CESMROOT=/glade/work/mlevy/codes/CESM/cesm2.2.2
+CESMROOT=/glade/work/mlevy/codes/CESM/cesm2.2.2_chlosp_HRpop
 COMPSET=G1850ECOIAF_JRA_HR
 #COMPSET="2000_DATM%JRA_SLND_CICE_POP2_DROF%JRA_SGLC_SWAV"
 RES=TL319_t13
