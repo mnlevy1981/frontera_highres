@@ -39,10 +39,9 @@
 2  coccoCaCO3_zint_100m
 2  diatC_zint_100m
 2  diazC_zint_100m
-2  microzooC_zint_100m
-2  mesozooC_zint_100m
+1  microzooC_zint_100m
+1  mesozooC_zint_100m
 2  mesozooC_zint_150m
-1  mesozooC_zint_100m_2
 
 #  gas flux related
 2  ECOSYS_IFRAC_2
@@ -111,15 +110,15 @@
 4  cocco_loss_poc_zint_100m
 4  sp_loss_doc_zint_100m
 4  cocco_loss_doc_zint_100m
-4  graze_sp_zint_100m
-4  graze_cocco_zint_100m
-4  graze_sp_poc_zint_100m
-4  graze_cocco_poc_zint_100m
-4  graze_sp_doc_zint_100m
-4  graze_cocco_doc_zint_100m
-4  graze_sp_microzoo_zint_100m
-4  graze_cocco_microzoo_zint_100m
-4  graze_cocco_mesozoo_zint_100m
+1  graze_sp_zint_100m
+1  graze_cocco_zint_100m
+1  graze_sp_poc_zint_100m
+1  graze_cocco_poc_zint_100m
+1  graze_sp_doc_zint_100m
+1  graze_cocco_doc_zint_100m
+1  graze_sp_microzoo_zint_100m
+1  graze_cocco_microzoo_zint_100m
+1  graze_cocco_mesozoo_zint_100m
 4  sp_agg_zint_100m
 4  cocco_agg_zint_100m
 
@@ -138,10 +137,10 @@
 4  diat_light_lim_Cweight_avg_100m
 4  diat_loss_zint_100m
 4  diat_loss_doc_zint_100m
-4  graze_diat_zint_100m
-4  graze_diat_poc_zint_100m
-4  graze_diat_doc_zint_100m
-4  graze_diat_mesozoo_zint_100m
+1  graze_diat_zint_100m
+1  graze_diat_poc_zint_100m
+1  graze_diat_doc_zint_100m
+1  graze_diat_mesozoo_zint_100m
 4  diat_agg_zint_100m
 
 #  diazotroph terms
@@ -156,11 +155,11 @@
 4  diaz_light_lim_Cweight_avg_100m
 4  diaz_loss_zint_100m
 4  diaz_loss_doc_zint_100m
-4  graze_diaz_zint_100m
-4  graze_diaz_poc_zint_100m
-4  graze_diaz_doc_zint_100m
-4  graze_diaz_microzoo_zint_100m
-4  graze_diaz_mesozoo_zint_100m
+1  graze_diaz_zint_100m
+1  graze_diaz_poc_zint_100m
+1  graze_diaz_doc_zint_100m
+1  graze_diaz_microzoo_zint_100m
+1  graze_diaz_mesozoo_zint_100m
 4  diaz_agg_zint_100m
 
 #  zooplankton terms
